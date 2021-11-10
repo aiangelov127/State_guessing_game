@@ -15,7 +15,6 @@ screen.addshape(image)
 states_map.shape(image)
 
 states_list = []
-not_guessed_list = []
 all_states = data.state.to_list()
 
 while len(states_list) < 50:
@@ -23,9 +22,7 @@ while len(states_list) < 50:
     answer_state = screen.textinput(title=f"{len(states_list)} / 50 correct", prompt="Guess a state: ").title()
 
     if answer_state == "Exit":
-        for s in data.state:
-            if s not in states_list:
-                not_guessed_list.append(s)
+        not_guessed_list = [state for state in data.state if state not in states_list]
         not_guessed = {
             "states": not_guessed_list
         }
